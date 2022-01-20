@@ -21,6 +21,8 @@ app.get('/',(req, res) => {
 })
 
 app.use('/user',require('./routes/userRoutes'))
+app.use('/constructions',require('./routes/constructionsRoutes'))
+app.use('/workers',require('./routes/workerRoutes'))
 
 const port = process.env.PORT || 5000
 

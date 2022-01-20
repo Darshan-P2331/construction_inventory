@@ -44,9 +44,8 @@ const userCtrl = {
       // console.log({ email, name, passwordHash, phone_no });
       await db.query(
         "INSERT INTO users SET ?",
-        { id: v1(), name, email, password: passwordHash, phone_no },
+        { uid: v1(), name, email, password: passwordHash, phone_no },
         (err, result) => {
-          console.log(err);
           if (err && err.errno === 1062)
             return res.status(400).json({ msg: "Email already in use" });
           return res.status(200).json({ msg: "Register successfull" });
@@ -56,6 +55,28 @@ const userCtrl = {
       return res.status(500).json({ msg: err.message });
     }
   },
+  assignSite: async (req,res) => {
+    const {user: uid, id: site_id} = req.body;
+    await db.query('UPDATE users SET site_id = ? WHERE uid = ?', [site_id, uid],(err, result) => {
+      if (err)
+        return res.status(400).json({ msg: err.message });
+      return res.status(200).json({ msg: "Register successfull" });
+    })
+  },
+  freeUsers: async (req, res) => {
+    try {
+      await db.query(
+        "SELECT name,uid FROM users WHERE site_id IS NULL",[],(err,result) => {
+          if (err) throw err;
+          if (result.length > 0) {
+            return res.status(200).json({ result})
+          }
+        }
+      )
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  }
 };
 
 module.exports = userCtrl;

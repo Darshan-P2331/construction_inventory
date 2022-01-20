@@ -1,6 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+const initialState = {
+  title: '',
+  owner: '',
+  estimate_cost: 0,
+  location: '',
+  user: '',
+  err: '',
+  success: '',
+}
 
 const ConstructionSite = () => {
+  const [formData, setFormData] = useState(initialState);
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const res = await axios.get("http://localhost:5000/user/free")
+      
+      if (res.status === 200) {
+        setUsers(res.data.result)
+        
+      }
+    }
+    fetchUsers();
+  }, []);
+  
+
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setFormData({ ...formData, [name]: value });
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("http://localhost:5000/constructions/add", formData);
+      setFormData({ ...formData, err: "", success: res.data.msg });
+
+    } catch (err) {
+      console.log(err)
+      err.response.data.msg &&
+        setFormData({ ...formData, err: err.response.data.msg, success: "" });
+    }
+  }
+
   return (
     <div className="w-full md:w-3/4 flex mx-auto">
       <div className="w-full">
@@ -8,18 +53,18 @@ const ConstructionSite = () => {
           Register Construction Site
         </h2>
         <div className="w-full flex justify-center">
-          <form className="mb-0 mt-5 space-y-6 w-3/4">
+          <form className="mb-0 mt-5 space-y-6 w-3/4" onSubmit={handleSubmit}>
             <div>
-              <div className="w-full text-center bg-red-100 rounded-lg py-2 text-red-600 ">
-                Error
-              </div>
-              <div className="w-full text-center bg-green-100 rounded-lg py-2 text-green-600 ">
-                Success
-              </div>
+              {formData.err && <div className="w-full text-center bg-red-100 rounded-lg py-2 text-red-600 ">
+                {formData.err}
+              </div>}
+              {formData.success && <div className="w-full text-center bg-green-100 rounded-lg py-2 text-green-600 ">
+                {formData.success}
+              </div>}
             </div>
             <div>
               <label
-                htmlFor="name"
+                htmlFor="title"
                 className="block text-sm font-medium text-gray-700"
               >
                 Name
@@ -27,11 +72,12 @@ const ConstructionSite = () => {
               <div className="mt-1">
                 <input
                   type="text"
-                  name="name"
-                  id="name"
+                  name="title"
+                  id="title"
                   required
                   placeholder="Name"
-                  autoComplete="name"
+                  value={formData.title}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -50,6 +96,8 @@ const ConstructionSite = () => {
                   required
                   placeholder="Owner"
                   autoComplete="owner"
+                  value={formData.owner}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -66,6 +114,8 @@ const ConstructionSite = () => {
                   id="location"
                   placeholder="Location"
                   rows="3"
+                  value={formData.location}
+                  onChange={handleChange}
                 ></textarea>
               </div>
             </div>
@@ -77,15 +127,19 @@ const ConstructionSite = () => {
                 Supervisor
               </label>
               <div className="mt-1">
-                <select name="user" id="user" required>
+                <select name="user" id="user" onChange={handleChange} value={formData.user} required>
                   <option value="">Select a supervisor</option>
-                  <option value="">User 1</option>
+                  {
+                    users.map((user) => (
+                      <option key={user.uid} value={user.uid}>{user.name}</option>
+                    ))
+                  }
                 </select>
               </div>
             </div>
             <div>
               <label
-                htmlFor="cost"
+                htmlFor="estimate_cost"
                 className="block text-sm font-medium text-gray-700"
               >
                 Estimate Cost
@@ -93,11 +147,12 @@ const ConstructionSite = () => {
               <div className="mt-1">
                 <input
                   type="number"
-                  name="cost"
-                  id="cost"
+                  name="estimate_cost"
+                  id="estimate_cost"
                   required
                   placeholder="Estimate cost"
-                  autoComplete="cost"
+                  value={formData.estimate_cost}
+                  onChange={handleChange}
                 />
               </div>
             </div>
