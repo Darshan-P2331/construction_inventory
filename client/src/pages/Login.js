@@ -9,6 +9,7 @@ const initialState = {
 };
 
 const Login = () => {
+
   const [formData, setFormData] = useState(initialState);
 
   const handleChange = (e) => {
@@ -23,8 +24,8 @@ const Login = () => {
       const res = await axios.post("http://localhost:5000/user/login", formData);
       setFormData({ ...formData, err: "", success: res.data.msg });
 
-      localStorage.setItem("firstLogin", JSON.stringify(res.data.user));
-
+      localStorage.setItem("dbmsLogin", JSON.stringify(res.data.user));
+      
       window.location.href = "/";
     } catch (err) {
       console.log(err)

@@ -1,27 +1,24 @@
 import React from 'react'
 
-const Card = () => {
+const Card = ({id,title,name,owner,estimate_cost,location}) => {
     return (
-        <div class="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg my-10 mx-5">
+        <div className="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg my-10 mx-5">
         <div>
-          <h2 class="text-gray-800 text-3xl font-semibold">Design Tools</h2>
-          <p class="mt-2 text-gray-600">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-            dolores deserunt ea doloremque natus error, rerum quas odio quaerat
-            nam ex commodi hic, suscipit in a veritatis pariatur minus
-            consequuntur!
+          <h2 className="text-gray-800 text-3xl font-semibold">{title}</h2>
+          <p className="mt-2 text-gray-600">
+            {location}
           </p>
-          <p class="text-md mt-2 font-medium text-gray-900 truncate">
-            Bonnie Green
+          <p className="text-md mt-2 font-medium text-gray-900 truncate">
+            {owner}
           </p>
         </div>
-        <div class="flex justify-between items-center mt-4">
-          <p className="text-base font-semibold text-gray-900">$5000</p>
+        <div className="flex justify-between items-center mt-4">
+          <p className="text-base font-semibold text-gray-900">Rs{estimate_cost}</p>
           <a
-            href="/"
-            class="text-xl font-medium text-indigo-500"
+            href={"/details/"+id}
+            className="text-xl font-medium text-indigo-500"
           >
-            View more
+            Transactions
           </a>
         </div>
       </div>

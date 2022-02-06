@@ -1,29 +1,43 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GlobalState } from "../GlobalState";
 
 const initialState = {
-  material: "",
-  cost: "",
-  quantity: "",
-  err: "",
-  success: "",
+  receiver: "",
+  amount: "",
+  details: "",
 };
 
-const Request = () => {
+const Transaction = (props) => {
   const state = useContext(GlobalState);
   const [user] = state.user;
   const [formData, setFormData] = useState(initialState);
 
+  useEffect(() => {
+    if (props.location.search) {
+      const fetchDetails = () => {
+        setFormData({
+          ...formData,
+          details: props.location.search.substring(1),
+        });
+      };
+      fetchDetails();
+    }
+  }, [props.location.search]);
+
   const handleChange = (e) => {
     const { value, name } = e.target;
-    setFormData({ ...formData, [name]: value})
-  }
+    setFormData({ ...formData, [name]: value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/materials/",{...formData,uid:user.uid,site_id: user.site_id})
+      await axios.post("http://localhost:5000/materials/approved",{uid: user.uid,site_id: user.site_id})
+      const res = await axios.post("http://localhost:5000/transactions/add", {
+        ...formData,
+        site_id: user.site_id,
+      });
       setFormData({ ...formData, err: "", success: res.data.msg });
     } catch (err) {
       setFormData({ ...formData, success: "", err: err.response.data.message });
@@ -33,7 +47,9 @@ const Request = () => {
   return (
     <div className="w-full md:w-3/4 flex mx-auto">
       <div className="w-full">
-        <h2 className="mt-6 text-4xl font-extrabold text-gray-900">Request Materials</h2>
+        <h2 className="mt-6 text-4xl font-extrabold text-gray-900">
+          Add Transaction
+        </h2>
         <div className="w-full flex justify-center">
           <form className="mb-0 mt-5 space-y-6 w-3/4" onSubmit={handleSubmit}>
             <div>
@@ -50,57 +66,57 @@ const Request = () => {
             </div>
             <div>
               <label
-                htmlFor="material"
+                htmlFor="receiver"
                 className="block text-sm font-medium text-gray-700"
               >
-                Material
+                Receiver
               </label>
               <div className="mt-1">
                 <input
                   type="text"
-                  name="material"
-                  id="material"
+                  name="receiver"
+                  id="receiver"
                   required
-                  placeholder="Material"
-                  value={formData.material}
+                  placeholder="receiver"
+                  value={formData.receiver}
                   onChange={handleChange}
                 />
               </div>
             </div>
             <div>
               <label
-                htmlFor="quantity"
+                htmlFor="details"
                 className="block text-sm font-medium text-gray-700"
               >
-                Quantity
+                Details
               </label>
               <div className="mt-1">
-                <input
-                  type="number"
-                  name="quantity"
-                  id="quantity"
+                <textarea
+                  id="details"
+                  name="details"
+                  rows="4"
                   required
-                  placeholder="Quantity"
-                  value={formData.quantity}
+                  placeholder="Details"
+                  value={formData.details}
                   onChange={handleChange}
-                />
+                ></textarea>
               </div>
             </div>
             <div>
               <label
-                htmlFor="cost"
+                htmlFor="amount"
                 className="block text-sm font-medium text-gray-700"
               >
-                Cost
+                Amount
               </label>
               <div className="mt-1">
                 <input
                   type="number"
-                  name="cost"
-                  id="cost"
+                  name="amount"
+                  id="amount"
                   required
-                  placeholder="Cost"
-                  value={formData.cost}
+                  placeholder="Amount"
+                  value={formData.amount}
                   onChange={handleChange}
                 />
               </div>
@@ -109,11 +125,11 @@ const Request = () => {
               <button
                 type="submit"
                 className="flex justify-center w-full px-4 py-2 text-sm 
-                    font-medium text-white bg-indigo-600 border border-transparent 
-                    rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 
-                    focus:ring-offset-2 focus:ring-indigo-500"
+                font-medium text-white bg-indigo-600 border border-transparent 
+                rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 
+                focus:ring-offset-2 focus:ring-indigo-500"
               >
-                Request
+                Submit
               </button>
             </div>
           </form>
@@ -123,4 +139,4 @@ const Request = () => {
   );
 };
 
-export default Request;
+export default Transaction;

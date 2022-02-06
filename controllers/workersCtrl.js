@@ -4,10 +4,10 @@ const { v1 } = require("uuid");
 const workersCtrl = {
   newWorkers: async (req, res) => {
     try {
-      const { name, contact_info, pay_per_day } = req.body;
+      const { name, contact_info, pay_per_day, gender,work_type } = req.body;
       await db.query(
         "INSERT INTO workers SET ?",
-        { id: v1(), name, contact_info, pay_per_day },
+        { id: v1(), name, contact_info, pay_per_day, gender,work_type },
         (err, result) => {
           if (err) throw err;
           return res.status(200).json({ msg: "Register successfull" });
@@ -32,6 +32,20 @@ const workersCtrl = {
       return res.status(500).json({ msg: err.message });
     }
   },
+  fetchWorkers: async (req, res) => {
+    try {
+      await db.query(
+        "SELECT * FROM workers",
+        [],
+        (err, result) => {
+          if (err) throw err;
+          if (result.length > 0) return res.status(200).json(result)
+        }
+      )
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  }
 };
 
 module.exports = workersCtrl;

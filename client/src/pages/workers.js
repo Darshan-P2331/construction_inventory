@@ -4,7 +4,9 @@ import React, { useState } from "react";
 const initialState = {
   name: "",
   contact_info: "",
+  gender: "",
   pay_per_day: "",
+  work_type: "",
   success: "",
   err: "",
 };
@@ -65,6 +67,23 @@ const Workers = () => {
               </div>
             </div>
             <div>
+              <span
+                className="block text-sm font-medium text-gray-700"
+              >
+                Gender
+              </span>
+              <div className="mt-1">
+                <label className="inline-flex items-center">
+                  <input type="radio" name="gender" id="gender" value="M" onChange={handleChange} />
+                  <span className="ml-2">Male</span>
+                </label>
+                <label className="inline-flex items-center ml-3">
+                  <input type="radio" name="gender" id="gender" value="F" onChange={handleChange}/>
+                  <span className="ml-2">Female</span>
+                </label>
+              </div>
+            </div>
+            <div>
               <label
                 htmlFor="contact_info"
                 className="block text-sm font-medium text-gray-700"
@@ -83,6 +102,20 @@ const Workers = () => {
                 />
               </div>
             </div>
+            <div>
+              <label 
+              htmlFor="work_type"
+              className="block text-sm font-medium text-gray-700"
+              >
+                Work Type
+              </label>
+              <div className="mt-1">
+              <select name="work_type" id="work_type" onChange={handleChange} value={formData.work_type} required>
+              <option value="">Select a Category</option>
+              <option value="test">test</option>
+                </select>
+              </div>
+              </div>
             <div>
               <label
                 htmlFor="pay_per_day"
