@@ -1,8 +1,9 @@
 import React from 'react'
 
 const Card = ({id,title,name,owner,estimate_cost,location}) => {
+  // const state = useContext(second);
     return (
-        <div className="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg my-10 mx-5">
+        <div className="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg my-10 mx-5 w-1/2">
         <div>
           <h2 className="text-gray-800 text-3xl font-semibold">{title}</h2>
           <p className="mt-2 text-gray-600">

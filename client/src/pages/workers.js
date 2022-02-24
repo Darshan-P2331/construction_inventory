@@ -112,7 +112,10 @@ const Workers = () => {
               <div className="mt-1">
               <select name="work_type" id="work_type" onChange={handleChange} value={formData.work_type} required>
               <option value="">Select a Category</option>
-              <option value="test">test</option>
+              <option value="welder">Welder</option>
+              <option value="cutter">Cutter</option>
+              <option value="cleaner">Cleaner</option>
+              <option value="unskilled">Unskilled</option>
                 </select>
               </div>
               </div>

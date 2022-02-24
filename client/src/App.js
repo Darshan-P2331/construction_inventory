@@ -11,6 +11,7 @@ import Details from "./pages/Details";
 import Transaction from "./pages/Transaction";
 import AssignWorkers from "./pages/AssignWorkers";
 import { GlobalState } from "./GlobalState";
+import IntroPage from "./pages/IntroPage";
 
 function App() {
   const state = useContext(GlobalState)
@@ -19,10 +20,12 @@ function App() {
   
   return (
     <BrowserRouter>
-    <div className="w-full">
+    <div className="w-full h-screen bg-gray-200" style={{backgroundImage: 'url(banner.jpg)',backgroundSize: 'cover'}}>
+      <div className="w-full h-screen" style={{backgroundColor: 'rgba(0,0,0,0.5)'}}>
       <Header/>
       <Switch>
-      <Route path="/" exact component={Home} />
+      <Route path="/" exact component={IntroPage} />
+      <Route path="/home" exact component={Home} />
       <Route path="/signin" exact component={Login} />
       {isAdmin && <Route path="/register" exact component={Register} />}
       {isAdmin && <Route path="/workers" exact component={Workers} />}
@@ -32,6 +35,10 @@ function App() {
       {isAdmin && <Route path="/transactions/:id" exact component={Transaction} />}
       {isAdmin && <Route path="/assign" exact component={AssignWorkers} />}
       </Switch>
+      <div className="w-full bottom-0 fixed flex justify-center items-center font-bold py-2">
+        <span>&copy; Reserved by Darshan.P and Ram Sanjay</span>
+      </div>
+      </div>
     </div>
     </BrowserRouter>
   );

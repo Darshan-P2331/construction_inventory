@@ -78,7 +78,7 @@ const Requests = ({ site_id }) => {
                                         <th className="p-2 whitespace-nowrap text-blue-500 underline">
                                             {
                                                 !data.isApproved && isAdmin ?
-                                                    <Link to={{ pathname: `/transactions/${site_id}`, search:`material:${data.material}\nquantity:${data.quantity}\ncost:${data.cost}` }} >
+                                                    <Link to={{ pathname: `/transactions/${data.id}`, search:`material:${data.material}\nquantity:${data.quantity}\ncost:${data.cost}` }} >
                                                         Approve
                                                     </Link> : ""
                                             }

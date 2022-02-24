@@ -12,10 +12,13 @@ const Transaction = (props) => {
   const state = useContext(GlobalState);
   const [user] = state.user;
   const [formData, setFormData] = useState(initialState);
+  const [request, setRequest] = useState({});
 
   useEffect(() => {
     if (props.location.search) {
-      const fetchDetails = () => {
+      const fetchDetails = async () => {
+        const res = await axios.post("http://localhost:5000/materials/one",{id: props.match.params.id})
+        setRequest(res.data[0])
         setFormData({
           ...formData,
           details: props.location.search.substring(1),
@@ -23,7 +26,7 @@ const Transaction = (props) => {
       };
       fetchDetails();
     }
-  }, [props.location.search]);
+  }, [ props.location.search]);
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -33,10 +36,10 @@ const Transaction = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/materials/approved",{uid: user.uid,site_id: user.site_id})
+      await axios.post("http://localhost:5000/materials/approved",{id: props.match.params.id})
       const res = await axios.post("http://localhost:5000/transactions/add", {
         ...formData,
-        site_id: user.site_id,
+        site_id: request.site_id,
       });
       setFormData({ ...formData, err: "", success: res.data.msg });
     } catch (err) {

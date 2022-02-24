@@ -27,13 +27,13 @@ const Header = () => {
         </>
     )
     return (
-        <header className="w-full border-b shadow-md items-center flex justify-center">
+        <header className="w-full border-b shadow-md items-center flex justify-center bg-white">
             <div className="w-full md:w-3/4 py-3 flex justify-between items-center">
                 <div className="flex-1">
-                    <a href='/' className="text-4xl font-bold text-indigo-600">Title</a>
+                    <a href='/' className="text-4xl font-bold text-indigo-600">Construction Management</a>
                 </div>
                 <div className="flex items-center justify-evenly">
-                    <a className="mx-1 hover:text-indigo-400 hover:underline" href="/">Home</a>
+                    <a className="mx-1 hover:text-indigo-400 hover:underline" href="/home">Home</a>
                     {
                         !isAdmin && isLoggedIn && userRoutes
                     }
