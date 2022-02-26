@@ -29,15 +29,12 @@ function App() {
       <Route path="/signin" exact component={Login} />
       {isAdmin && <Route path="/register" exact component={Register} />}
       {isAdmin && <Route path="/workers" exact component={Workers} />}
-      {isLoggedIn && !isAdmin && <Route path="/request" exact component={Request} />}
       {isLoggedIn && <Route path="/details/:id" exact component={Details} />}
-      {isAdmin && <Route path="/construction" exact component={ConstructionSite} />}
+      {isLoggedIn && !isAdmin && <Route path="/request" exact component={Request} />}
       {isAdmin && <Route path="/transactions/:id" exact component={Transaction} />}
+      {isAdmin && <Route path="/construction" exact component={ConstructionSite} />}
       {isAdmin && <Route path="/assign" exact component={AssignWorkers} />}
       </Switch>
-      <div className="w-full bottom-0 fixed flex justify-center items-center font-bold py-2">
-        <span>&copy; Reserved by Darshan.P and Ram Sanjay</span>
-      </div>
       </div>
     </div>
     </BrowserRouter>

@@ -32,7 +32,7 @@ const Workers = () => {
   return (
     <div className="w-full md:w-3/4 flex mx-auto">
       <div className="w-full">
-        <h2 className="mt-6 text-4xl font-extrabold text-gray-900">Workers</h2>
+        <h2 className="mt-6 text-4xl font-extrabold text-white">Workers</h2>
         <div className="w-full flex justify-center">
           <form className="mb-0 mt-5 space-y-6 w-3/4" onSubmit={handleSubmit}>
             <div>
@@ -50,7 +50,7 @@ const Workers = () => {
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Name
               </label>
@@ -68,7 +68,7 @@ const Workers = () => {
             </div>
             <div>
               <span
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Gender
               </span>
@@ -86,7 +86,7 @@ const Workers = () => {
             <div>
               <label
                 htmlFor="contact_info"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Contact Information
               </label>
@@ -105,7 +105,7 @@ const Workers = () => {
             <div>
               <label 
               htmlFor="work_type"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-white"
               >
                 Work Type
               </label>
@@ -122,7 +122,7 @@ const Workers = () => {
             <div>
               <label
                 htmlFor="pay_per_day"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Pay Per Day
               </label>

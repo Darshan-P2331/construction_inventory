@@ -49,7 +49,7 @@ const AssignWorkers = () => {
                 {
                     workers.map(worker => (
 
-              <tr key={worker.id} className="divide-y divide-gray-100">
+              <tr key={worker.id} className="divide-y divide-gray-400 bg-gray-50">
                 <th className="p-2 whitespace-nowrap text-left">{worker.name}</th>
                 <th className="p-2 whitespace-nowrap text-left">{worker.gender}</th>
                 <th className="p-2 whitespace-nowrap text-left">{worker.work_type}</th>

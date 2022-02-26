@@ -20,6 +20,9 @@ const Home = () => {
       {constructionSites.map((sites) => (
         <Card key={sites.id} {...sites} />
       ))}
+      <div className="w-full bottom-0 fixed flex justify-center items-center font-bold py-2 bg-white">
+        <span>&copy; Reserved by Darshan.P and Ram Sanjay</span>
+      </div>
     </div>
   );
 };

@@ -49,7 +49,7 @@ const Requests = ({ site_id }) => {
                         <tbody className="divide-y divide-gray-200 text-md font-medium">
                             {
                                 requests.map((data, i) => (
-                                    <tr className="divide-y divide-gray-100" key={i}>
+                                    <tr className="divide-y divide-gray-100 bg-gray-50" key={i}>
                                         <th className="p-2 whitespace-nowrap">
                                             <div className="text-left">{data.material}</div>
                                         </th>

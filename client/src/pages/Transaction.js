@@ -48,6 +48,7 @@ const Transaction = (props) => {
   };
 
   return (
+    <div className="w-full h-screen bg-gray-100">
     <div className="w-full md:w-3/4 flex mx-auto">
       <div className="w-full">
         <h2 className="mt-6 text-4xl font-extrabold text-gray-900">
@@ -138,6 +139,7 @@ const Transaction = (props) => {
           </form>
         </div>
       </div>
+    </div>
     </div>
   );
 };

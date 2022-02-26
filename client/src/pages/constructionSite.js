@@ -49,7 +49,7 @@ const ConstructionSite = () => {
   return (
     <div className="w-full md:w-3/4 flex mx-auto">
       <div className="w-full">
-        <h2 className="mt-6 text-4xl font-extrabold text-gray-900">
+        <h2 className="mt-6 text-4xl font-extrabold text-white">
           Register Construction Site
         </h2>
         <div className="w-full flex justify-center">
@@ -65,7 +65,7 @@ const ConstructionSite = () => {
             <div>
               <label
                 htmlFor="title"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Name
               </label>
@@ -84,7 +84,7 @@ const ConstructionSite = () => {
             <div>
               <label
                 htmlFor="owner"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Owner
               </label>
@@ -104,7 +104,7 @@ const ConstructionSite = () => {
             <div>
               <label
                 htmlFor="location"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Location
               </label>
@@ -122,7 +122,7 @@ const ConstructionSite = () => {
             <div>
               <label 
               htmlFor="user"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-white"
               >
                 Supervisor
               </label>
@@ -140,7 +140,7 @@ const ConstructionSite = () => {
             <div>
               <label
                 htmlFor="estimate_cost"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-white"
               >
                 Estimate Cost
               </label>

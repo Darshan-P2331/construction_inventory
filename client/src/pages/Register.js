@@ -30,7 +30,7 @@ const Register = () => {
 
       // localStorage.setItem("firstLogin", true);
 
-      // window.location.href = "/";
+      window.location.href = "/home";
     } catch (err) {
       console.log(err);
       err.response.data.msg &&
@@ -39,9 +39,9 @@ const Register = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col justify-center px-6 py-12 bg-gray-100 lg:px-8">
+    <div className="h-max flex flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-4xl font-extrabold text-center text-gray-900">
+        <h2 className="mt-6 text-4xl font-extrabold text-center text-white">
           Register
         </h2>
       </div>
