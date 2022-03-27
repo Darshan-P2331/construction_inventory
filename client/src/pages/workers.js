@@ -75,11 +75,11 @@ const Workers = () => {
               <div className="mt-1">
                 <label className="inline-flex items-center">
                   <input type="radio" name="gender" id="gender" value="M" onChange={handleChange} />
-                  <span className="ml-2">Male</span>
+                  <span className="ml-2 text-white">Male</span>
                 </label>
                 <label className="inline-flex items-center ml-3">
                   <input type="radio" name="gender" id="gender" value="F" onChange={handleChange}/>
-                  <span className="ml-2">Female</span>
+                  <span className="ml-2 text-white">Female</span>
                 </label>
               </div>
             </div>
